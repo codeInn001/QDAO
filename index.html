@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <button class="login">login</button>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyB9j5vTH_yiYYtn8C7WY15o_4eqyuGdKiM",
+          authDomain: "segzybeez.firebaseapp.com",
+          projectId: "segzybeez",
+          storageBucket: "segzybeez.appspot.com",
+          messagingSenderId: "578278225459",
+          appId: "1:578278225459:web:2677dbc49cf8b055ea1546"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+  const provider = new GoogleAuthProvider()
+
+  const signInButton = document.querySelector('.login')
+
+  const userSignIn = async() => {
+    signInWithPopup(auth, provider)
+    .then((result) => {
+        const user = result.user
+        console.log(user, signin);
+    }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message
+    })
+  }
+
+
+  const userSignOut = async() => {
+    signOut(auth).then(() => {
+        alert("You have signed out successfully!");
+    }).catch((error) => {})
+  }
+
+
+  signInButton.addEventListener('click', userSignIn);
+        
+      </script>
+      <script src="../js/script.js"></script>
+</body>
+</html>
